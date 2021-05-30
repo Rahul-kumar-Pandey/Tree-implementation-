@@ -54,10 +54,28 @@ Node* InsertNode(Node* root, int data)
     }
 }
  
-/* Inorder traversal 
-void recursiveInorder(Node *root){
-  
+/*level order traversal using recursion time complexity---> O(n*n) space O(n) for callbacks*/
+void printLevelOrder(node* root)
+{
+    int h = height(root);
+    int i;
+    for (i = 1; i <= h; i++)
+        printCurrentLevel(root, i);
 }
+// Print nodes at a current level
+void printCurrentLevel(node* root, int level)
+{
+    if (root == NULL)
+        return;
+    if (level == 1)
+        cout << root->data << " ";
+    else if (level > 1)
+    {
+        printCurrentLevel(root->left, level-1);
+        printCurrentLevel(root->right, level-1);
+    }
+}
+
 int main(){
   node *root=CreateNode(10);
   return 0;
